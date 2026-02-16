@@ -365,7 +365,29 @@ As colunas calculadas já são geradas pelo Python e carregadas como texto no CS
 - Python 3.x com bibliotecas: `pandas`, `numpy`, `watchdog`
 - Pasta do OneDrive/SharePoint sincronizada: `Fichiers de Usuario Servico Telemetria JBS - Dados Acompanhamento`
 - Arquivos de gestão atualizados em `arquivos_gestao/`
+### ⚠️ Nota Importante: Virtual Environment
 
+**O `.venv` foi removido do OneDrive e transferido para `C:\.venv\gestor_filas`** para evitar problemas de sincronização (redução de performance). Isto devido ao grande volume de arquivos pequenos typically found dentro de um virtual environment.
+
+**Localização atual:**
+```
+C:\.venv\gestor_filas\       ← Virtual environment (separado do OneDrive)
+  ├── Scripts\
+  │   ├── python.exe
+  │   └── pip.exe
+  ├── Lib\
+  └── ...
+```
+
+**Para trabalhar no projeto localmente:**
+1. O VS Code detectará automaticamente este ambiente (Python extension)
+2. Em um novo computador, você precisará recriar o `venv` ou copiar `C:\.venv\gestor_filas` do seu computador original
+3. Se precisar reinstalar dependências:
+   ```bash
+   C:\.venv\gestor_filas\Scripts\pip.exe install -r requirements.txt
+   ```
+
+Consulte o arquivo `.env` na raiz do projeto para referência dos caminhos.
 ### Via Task Scheduler (Recomendado)
 
 1. Crie uma tarefa no Windows Task Scheduler
