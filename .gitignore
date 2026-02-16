@@ -1,0 +1,21 @@
+# Build artifacts
+build/
+dist/
+*.spec
+__pycache__/
+*.pyc
+
+# Executáveis compilados
+*.exe
+
+# Virtual environment
+.venv/
+
+# Windows
+desktop.ini
+Thumbs.db
+
+# Dados sensíveis / gerados
+arquivos_painel/protocolos_agente.csv
+arquivos_auxiliares/contador_atualizacoes*.txt
+arquivos_auxiliares/relacao_fila_ec_agente*.csv
