@@ -388,13 +388,42 @@ C:\.venv\gestor_filas\       ← Virtual environment (separado do OneDrive)
    ```
 
 Consulte o arquivo `.env` na raiz do projeto para referência dos caminhos.
-### Via Task Scheduler (Recomendado)
 
-1. Crie uma tarefa no Windows Task Scheduler
-2. **Gatilho**: Repetir a cada 1 hora (alinhado com a atualização do `relatorioAcompanhamento.csv`)
-3. **Ação**: Executar `python main_lm.py`
-4. **Diretório de trabalho**: Caminho do repositório
-5. O script detecta automaticamente o perfil do usuário logado (`%USERPROFILE%`)
+### Via Task Scheduler (Recomendado) ⭐
+
+**Status Atual:** ✅ Tarefa `GestorFilasAcompanhamento` ja está configurada e em execução.
+
+#### Configuração Automática (Recomendado)
+Para criar/recriar a tarefa automaticamente, execute:
+```batch
+setup_task_scheduler.bat
+```
+
+#### Detalhes da Tarefa Criada
+| Propriedade | Valor |
+|-------------|-------|
+| **Nome** | `GestorFilasAcompanhamento` |
+| **Frequência** | Diariamente |
+| **Horário de Início** | 08:00 da manhã |
+| **Repetição** | A cada 1 hora |
+| **Duração** | 11 horas (08:00 até 19:00, com última execução em 18:00) |
+| **Execução** | `C:\.venv\gestor_filas\Scripts\python.exe main_lm.py` |
+| **Status** | Habilitada (✅ Ative) |
+
+#### Execuções Diárias
+```
+08:00 ► 09:00 ► 10:00 ► 11:00 ► 12:00 ► 13:00 ► 14:00 ► 15:00 ► 16:00 ► 17:00 ► 18:00
+```
+**Total: 11 execuções por dia**, alinhadas com a atualização horária do `relatorioAcompanhamento.csv`
+
+#### Para Modificar a Tarefa (Manualmente)
+
+Se precisar ajustar horários, abra **Task Scheduler**:
+1. Pressione `Win + R`, digite `taskschd.msc` e Enter
+2. Procure por `GestorFilasAcompanhamento`
+3. Clique com botão direito → **Propriedades**
+4. Abra a aba **Gatilhos** para editar horários
+5. Abra a aba **Ações** para ver o comando a ser executado
 
 ### Via Watchdog (atualizador.py)
 
